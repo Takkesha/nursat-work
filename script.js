@@ -43,8 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         state.color = btn.dataset.color;
         selectedColorLabel.textContent = state.color;
 
-        // Меняем цвет наложения на превью телефона — берём тот же цвет,
-        // что задан у свотча через inline style.background
         colorOverlay.style.background = getComputedStyle(btn).backgroundColor;
     });
 
@@ -144,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     emailInput.addEventListener('blur', validateEmail);
     phoneInput.addEventListener('blur', validatePhone);
 
+    /* ---------- Form submit (Отправка в Telegram) ---------- */
     orderForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const isNameValid = validateName();
@@ -152,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!isNameValid || !isEmailValid || !isPhoneValid) return;
 
-        // Здесь в реальном проекте был бы fetch() на сервер / Formspree / EmailJS
         const order = {
             name: nameInput.value.trim(),
             email: emailInput.value.trim(),
@@ -161,16 +159,45 @@ document.addEventListener('DOMContentLoaded', () => {
             storage: state.storage,
             price: state.price
         };
-        console.log('New order:', order);
 
-        orderForm.style.display = 'none';
-        modalSuccess.classList.add('open');
-        modalSuccessDetail.textContent = `${order.color} · ${order.storage} · $${order.price} отправится на ${order.email}`;
+        const botToken = '8899410656:AAFl1gRAvX0jc34AEw7uruFnUjrgyimya_0';
+        const chatId = '7481497534';
 
-        orderForm.reset();
-        setError(nameInput, nameError, '');
-        setError(emailInput, emailError, '');
-        setError(phoneInput, phoneError, '');
+        const message = `🛍 <b>Новый предзаказ Galaxy S23 Ultra!</b>\n\n` +
+                        `👤 <b>Имя:</b> ${order.name}\n` +
+                        `📧 <b>Email:</b> ${order.email}\n` +
+                        `📞 <b>Телефон:</b> ${order.phone}\n\n` +
+                        `🎨 <b>Цвет:</b> ${order.color}\n` +
+                        `💾 <b>Память:</b> ${order.storage}\n` +
+                        `💵 <b>Цена:</b> $${order.price}`;
+
+        fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message,
+                parse_mode: 'HTML'
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                orderForm.style.display = 'none';
+                modalSuccess.classList.add('open');
+                modalSuccessDetail.textContent = `${order.color} · ${order.storage} · $${order.price} (детали отправлены на ${order.email})`;
+
+                orderForm.reset();
+                setError(nameInput, nameError, '');
+                setError(emailInput, emailError, '');
+                setError(phoneInput, phoneError, '');
+            } else {
+                alert('Ошибка отправки. Убедитесь, что вы запустили (START) вашего бота в Telegram!');
+            }
+        })
+        .catch(err => {
+            console.error('Ошибка:', err);
+            alert('Не удалось отправить запрос.');
+        });
     });
 
     updatePriceDisplay();
