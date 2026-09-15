@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy S23 Ultra | Buy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">SAMSUNG</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#top">Smartphones</a></li>
+            <li><a href="#specs">Characteristics</a></li>
+            <li><a href="#buy">Buy</a></li>
+        </ul>
+        <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <section class="hero" id="top">
+        <div class="hero-content">
+            <h1>Galaxy S23 Ultra</h1>
+            <p>Legendary camera. Unbelievable performance.</p>
+            <a href="#buy" class="btn-buy" id="heroPreorderLink">Pre-order now</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.biggeek.ru/4/originals/5435/20213-985ezgif.com-gif-maker-9.gif" alt="Samsung Galaxy S23 Ultra">
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <h3>200 MP</h3>
+            <p>Quality of camera</p>
+        </div>
+        <div class="feature-card">
+            <h3>Snapdragon® 8 Gen 2</h3>
+            <p>The fastest chip</p>
+        </div>
+        <div class="feature-card">
+            <h3>Built-in S pen</h3>
+            <p>for notes and creativity</p>
+        </div>
+    </section>
+
+    <section class="specs" id="specs">
+        <h2 class="section-title">Characteristics</h2>
+        <div class="specs-grid">
+            <div class="spec-row">
+                <span class="spec-label">Display</span>
+                <span class="spec-value">6.8" Dynamic AMOLED 2X, 120Hz</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Processor</span>
+                <span class="spec-value">Snapdragon® 8 Gen 2 for Galaxy</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Main camera</span>
+                <span class="spec-value">200 MP wide + 12 MP ultra-wide + 2x 10 MP tele</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Battery</span>
+                <span class="spec-value">5000 mAh, 45W fast charging</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">RAM</span>
+                <span class="spec-value">12 GB</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">S Pen</span>
+                <span class="spec-value">Built-in, low latency</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Body</span>
+                <span class="spec-value">Titanium frame, Gorilla Glass Victus 2, IP68</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="buy" id="buy">
+        <h2 class="section-title">Configure &amp; Buy</h2>
+
+        <div class="buy-layout">
+            <div class="phone-preview">
+                <img id="phonePreviewImg" src="https://images.biggeek.ru/4/originals/5435/20213-985ezgif.com-gif-maker-9.gif" alt="Galaxy S23 Ultra preview">
+                <div class="color-overlay" id="colorOverlay"></div>
+            </div>
+
+            <div class="config-panel">
+                <div class="config-group">
+                    <p class="config-label">Color</p>
+                    <div class="color-options" id="colorOptions">
+                        <button type="button" class="color-swatch selected" style="background:#3b3b3b" data-color="Phantom Black" aria-label="Phantom Black"></button>
+                        <button type="button" class="color-swatch" style="background:#e8e0d3" data-color="Cream" aria-label="Cream"></button>
+                        <button type="button" class="color-swatch" style="background:#5a7284" data-color="Sky Blue" aria-label="Sky Blue"></button>
+                        <button type="button" class="color-swatch" style="background:#8d7ea8" data-color="Lavender" aria-label="Lavender"></button>
+                    </div>
+                    <p class="config-selected-label" id="selectedColorLabel">Phantom Black</p>
+                </div>
+
+                <div class="config-group">
+                    <p class="config-label">Storage</p>
+                    <div class="storage-options" id="storageOptions">
+                        <button type="button" class="storage-option selected" data-price="1199" data-storage="256 GB">256 GB</button>
+                        <button type="button" class="storage-option" data-price="1379" data-storage="512 GB">512 GB</button>
+                        <button type="button" class="storage-option" data-price="1619" data-storage="1 TB">1 TB</button>
+                    </div>
+                </div>
+
+                <div class="config-summary">
+                    <span class="config-price" id="configPrice">$1199</span>
+                    <div class="config-actions">
+                        <button type="button" class="btn-buy" id="openOrderModal">Pre-order now</button>
+                        <a href="https://www.samsung.com/us/smartphones/galaxy-s23-ultra/buy/galaxy-s23-ultra-256gb-unlocked-sm-s918uzraxaa/" target="_blank" rel="noopener noreferrer" class="btn-secondary">View on Samsung.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Samsung concept page. Учебный проект.</p>
+    </footer>
+
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close" id="closeOrderModal" aria-label="Close">&times;</button>
+            <h3 id="modalTitle">Pre-order Galaxy S23 Ultra</h3>
+            <p class="modal-config-summary" id="modalConfigSummary">Phantom Black &middot; 256 GB &middot; $1199</p>
+
+            <form id="orderForm" novalidate>
+                <label for="name">Full name</label>
+                <input type="text" id="name" name="name" placeholder="John Appleseed">
+                <span class="field-error" id="nameError"></span>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="john@example.com">
+                <span class="field-error" id="emailError"></span>
+
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="+7 700 000 00 00">
+                <span class="field-error" id="phoneError"></span>
+
+                <button type="submit" class="btn-buy btn-submit">Confirm pre-order</button>
+            </form>
+
+            <p class="modal-alt-link">
+                Or <a href="https://www.samsung.com/us/smartphones/galaxy-s23-ultra/buy/galaxy-s23-ultra-256gb-unlocked-sm-s918uzraxaa/" target="_blank" rel="noopener noreferrer">buy directly on Samsung.com</a>
+            </p>
+
+            <div class="modal-success" id="modalSuccess">
+                <p>Спасибо! Ваш предзаказ принят.</p>
+                <p class="modal-success-detail" id="modalSuccessDetail"></p>
+            </div>
+        </div>
+</html>
+    </div>
+
+    <script src="script.js"></script>
+</body>

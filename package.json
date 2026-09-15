@@ -1,0 +1,9 @@
+{
+    "name": "galaxy-s23-ultra-landing",
+    "version": "1.0.0",
+    "description": "Landing page for Samsung Galaxy S23 Ultra — учебный проект",
+    "scripts": {
+        "start": "npx http-server -p 5500 -o"
+    },
+    "license": "MIT"
+}
